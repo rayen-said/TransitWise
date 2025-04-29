@@ -51,19 +51,19 @@ export async function getMapboxRoutes(
 /**
  * 3. Compute next public-transit itineraries via GTFS & GTFS-Realtime :contentReference[oaicite:7]{index=7}
  */
-export async function getTransitRoutes(
+/*export async function getTransitRoutes(
   origin: { lat: number; lng: number },
   destination: { lat: number; lng: number }
 ): Promise<any[]> {
   // 1) import GTFS feeds (static) into SQLite
-  await importGtfs({ /* your config.json path or object */ });
+  await importGtfs({ });
   // 2) fetch GTFS-Realtime feeds
   const feed = await fetch(process.env.GTFS_RT_URL as string);
   const rt = GtfsRealtimeBindings.FeedMessage.decode(await feed.arrayBuffer());
   // 3) integrate schedule + realtime data to build itineraries...
   // (Implementation depends on your routing logic)
   return []; // return list of transit itineraries
-}
+}*/
 
 /**
  * 4. Get ride-sharing ETAs & price estimates from Uber API :contentReference[oaicite:8]{index=8}
@@ -117,7 +117,7 @@ export async function bookRide(
 /**
  * 7. Log the user’s selected route for history/analytics in your database :contentReference[oaicite:11]{index=11}
  */
-export async function logRouteSelection(
+/*export async function logRouteSelection(
   userId: string,
   route: any
 ): Promise<void> {
@@ -130,4 +130,4 @@ export async function logRouteSelection(
       createdAt: new Date()
     }
   });
-}
+}*/
