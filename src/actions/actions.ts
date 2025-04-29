@@ -3,8 +3,7 @@
 
 import fetch from "node-fetch";
 import { importGtfs } from "gtfs";                      // GTFS import/query library :contentReference[oaicite:1]{index=1}
-import GtfsRealtimeBindings from "gtfs-realtime-bindings"; // GTFS-Realtime parser :contentReference[oaicite:2]{index=2}
-import Uber from "node-uber";                           // Uber API wrapper :contentReference[oaicite:3]{index=3}
+import GtfsRealtimeBindings from "gtfs-realtime-bindings"; // GTFS-Realtime parser :contentReference[oaicite:2]{index=2}                         // Uber API wrapper :contentReference[oaicite:3]{index=3}
 import { PrismaClient } from "@prisma/client";
   
 // Prevent multiple PrismaClient instances in dev :contentReference[oaicite:4]{index=4}
@@ -69,30 +68,6 @@ export async function getTransitRoutes(
 /**
  * 4. Get ride-sharing ETAs & price estimates from Uber API :contentReference[oaicite:8]{index=8}
  */
-export async function getRideEstimates(
-  origin: { lat: number; lng: number },
-  destination: { lat: number; lng: number }
-): Promise<any> {
-  const uber = new Uber({
-    client_id: process.env.UBER_CLIENT_ID!,
-    client_secret: process.env.UBER_CLIENT_SECRET!,
-    server_token: process.env.UBER_SERVER_TOKEN!,
-    redirect_uri: process.env.UBER_REDIRECT_URI!
-  });
-  // Price estimates
-  const priceRes = await uber.requests.getPriceEstimates({
-    start_latitude: origin.lat,
-    start_longitude: origin.lng,
-    end_latitude: destination.lat,
-    end_longitude: destination.lng
-  });
-  // Time estimates
-  const timeRes = await uber.requests.getTimeEstimates({
-    start_latitude: origin.lat,
-    start_longitude: origin.lng
-  });
-  return { prices: priceRes, times: timeRes };
-}
 
 /**
  * 5. Merge & sort all mode-options by wait time + total duration :contentReference[oaicite:9]{index=9}
