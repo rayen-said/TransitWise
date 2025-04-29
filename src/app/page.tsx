@@ -3,11 +3,10 @@ import Navbar from "@/components/Header";
 import "mapbox-gl/dist/mapbox-gl.css";
 import Map, { Marker } from 'react-map-gl/mapbox';
 import React from "react";
-import { useGeolocation } from "@/hooks/useGeolocation";
+
 
 export default function Home() {
   const mapboxToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
-  const { latitude, longitude, accuracy, error } = useGeolocation();
   return (
     <div className="flex flex-col h-screen w-full">
       <Navbar />

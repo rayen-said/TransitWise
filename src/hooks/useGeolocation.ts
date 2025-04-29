@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 
 type GeolocationData= {
-    latitude: number ;
-    longitude: number ;
-    accuracy: number ;
-    error : string ;
+    latitude: number | null;
+    longitude: number | null;
+    accuracy: number | null;
+    error : string | null;
 };
 
 export const useGeolocation = (): GeolocationData => {
